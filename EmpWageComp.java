@@ -5,25 +5,24 @@ public class EmpWageComp {
                 System.out.println("**********Welcome to Employee Wage Computation Problem**********");
 		int isFullTime = 1;
 		int isPartTime = 2;
-		int fullDayHr = 16;
-		int partTimeHr = 8;
 		int wagePerHr = 20;
-		double empCheck = Math.floor(Math.random() * 10 ) % 3;
+		int empCheck = (int)Math.floor(Math.random() * 10 ) % 3;
 		int dailyWage = 0;
+		int empHrs=0;
 		
-		if (empCheck == isFullTime) {
-
-			System.out.println("Employee -> Full time present");
-			dailyWage = wagePerHr*fullDayHr;
+		switch (empCheck)
+		{
+		case 0:
+			empHrs=0;
+			break;
+		case 1:
+			empHrs=8;
+			break;
+		case 2:
+			empHrs=16;
+			break;
 		}
-		else if (empCheck == isPartTime) {
-
-                        System.out.println("Employee -> Part time present");
-                        dailyWage = wagePerHr*partTimeHr;
-                }
-		else {
-			System.out.println("Employee absent");
-		}
+		dailyWage=wagePerHr*empHrs;
 		System.out.println("Daily wage of Employee:" + dailyWage);
         }
 }
