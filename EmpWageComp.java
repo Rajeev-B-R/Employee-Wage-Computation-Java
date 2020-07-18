@@ -8,7 +8,7 @@ public class EmpWageComp {
 		int fullDayHr = 16;
 		int partTimeHr = 8;
 		int wagePerHr = 20;
-		double empCheck = Math.floor(Math.random() * 10 ) % 2;
+		double empCheck = Math.floor(Math.random() * 10 ) % 3;
 		int dailyWage = 0;
 		
 		if (empCheck == isFullTime) {
