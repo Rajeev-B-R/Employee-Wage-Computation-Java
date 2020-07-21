@@ -62,3 +62,4 @@ public class EmpWageComp
 		EmpWageComp company3 = new EmpWageComp("Behtar", 16, 6, 90, 16);
 		company3.calcEmpWage();
 	}
+}
