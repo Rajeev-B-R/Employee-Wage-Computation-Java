@@ -1,5 +1,5 @@
 import java.util.*;
-public class EmpWageComp 
+class EmpWageComp 
 {
 	public static final int isPartTime=1;
 	public static final int isFullTime=2;
@@ -19,14 +19,18 @@ public class EmpWageComp
 		this.totalWorkingDays = totalWorkingDays;
 	}
     
+    	public String getCompany() 
+	{
+		return this.company;
+	}    
+    
     	public static int calcEmpWage()
 	{
 		int empHrs=0;
 		int totalEmpHrs=0;
 		int workingDays=0;
 		int totalEmpWage=0;
-		System.out.println("Company : "+company);
-		
+
 		while(totalEmpHrs<=maxHrsInMonth && workingDays<totalWorkingDays)
 		{
 			int empWage=0;
@@ -45,26 +49,22 @@ public class EmpWageComp
 			}
 			totalEmpHrs+=empHrs;
 			empWage=empHrs*wagePerHr;
-			System.out.println("Day : "+workingDays+"  Employee Hours : "+empHrs+"  Employee wage : "+empWage);
 		}
 		totalEmpWage=totalEmpHrs*wagePerHr;
-		System.out.println();
-		System.out.println("Total Hours : "+totalEmpHrs+"	 Total Wage : "+totalEmpWage);
-		System.out.println();
 		return totalEmpWage;
 	}
-	
+}
+
+public class EmpWage 
+{
+	public static EmpWageComp compWage[] = new EmpWageComp[3];	
     	public static void main(String[] args)
 	{
-	    HashMap<String, Integer> company=new HashMap<String, Integer>();
-		EmpWageComp company1 = new EmpWageComp("More", 20, 8, 100, 20);
-        	company.put("More",company1.calcEmpWage());
-		EmpWageComp company2 = new EmpWageComp("A-Plus", 18, 7, 95, 18);
-		company.put("A-Plus",company2.calcEmpWage());
-		EmpWageComp company3 = new EmpWageComp("Behtar", 16, 6, 90, 16);
-		company.put("Behtar",company3.calcEmpWage());
-		System.out.println("More : "+company.get("More"));
-		System.out.println("A-Plus : "+company.get("A-Plus"));
-		System.out.println("Behtar : "+company.get("Behtar"));
+	    	compWage[0] = new EmpWageComp("More", 20, 8, 100, 20);
+		System.out.println(compWage[0].getCompany()+" : "+compWage[0].calcEmpWage());
+		compWage[1] = new EmpWageComp("A-Plus", 18, 7, 95, 18);
+		System.out.println(compWage[1].getCompany()+" : "+compWage[1].calcEmpWage());
+		compWage[2] = new EmpWageComp("Behtar", 16, 6, 90, 16);
+		System.out.println(compWage[2].getCompany()+" : "+compWage[2].calcEmpWage());
 	}
 }
