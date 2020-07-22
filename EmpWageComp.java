@@ -1,3 +1,4 @@
+import java.util.*;
 public class EmpWageComp 
 {
 	public static final int isPartTime=1;
@@ -18,7 +19,7 @@ public class EmpWageComp
 		this.totalWorkingDays = totalWorkingDays;
 	}
     
-    public static int calcEmpWage()
+    	public static int calcEmpWage()
 	{
 		int empHrs=0;
 		int totalEmpHrs=0;
@@ -53,13 +54,17 @@ public class EmpWageComp
 		return totalEmpWage;
 	}
 	
-    public static void main(String[] args)
+    	public static void main(String[] args)
 	{
+	    HashMap<String, Integer> company=new HashMap<String, Integer>();
 		EmpWageComp company1 = new EmpWageComp("More", 20, 8, 100, 20);
-		company1.calcEmpWage();
+        	company.put("More",company1.calcEmpWage());
 		EmpWageComp company2 = new EmpWageComp("A-Plus", 18, 7, 95, 18);
-		company2.calcEmpWage();
+		company.put("A-Plus",company2.calcEmpWage());
 		EmpWageComp company3 = new EmpWageComp("Behtar", 16, 6, 90, 16);
-		company3.calcEmpWage();
+		company.put("Behtar",company3.calcEmpWage());
+		System.out.println("More : "+company.get("More"));
+		System.out.println("A-Plus : "+company.get("A-Plus"));
+		System.out.println("Behtar : "+company.get("Behtar"));
 	}
 }
