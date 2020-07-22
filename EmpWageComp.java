@@ -57,14 +57,15 @@ class EmpWageComp
 
 public class EmpWage 
 {
-	public static EmpWageComp compWage[] = new EmpWageComp[3];	
+    	public static ArrayList <Integer> company = new ArrayList <Integer>();
     	public static void main(String[] args)
 	{
-	    	compWage[0] = new EmpWageComp("More", 20, 8, 100, 20);
-		System.out.println(compWage[0].getCompany()+" : "+compWage[0].calcEmpWage());
-		compWage[1] = new EmpWageComp("A-Plus", 18, 7, 95, 18);
-		System.out.println(compWage[1].getCompany()+" : "+compWage[1].calcEmpWage());
-		compWage[2] = new EmpWageComp("Behtar", 16, 6, 90, 16);
-		System.out.println(compWage[2].getCompany()+" : "+compWage[2].calcEmpWage());
+	    	EmpWageComp company1 = new EmpWageComp("More", 20, 8, 100, 20);
+		EmpWageComp company2 = new EmpWageComp("A-Plus", 18, 7, 95, 18);
+		EmpWageComp company3 = new EmpWageComp("Behtar", 16, 6, 90, 16);
+		company.add(company1.calcEmpWage());
+		company.add(company2.calcEmpWage());
+		company.add(company3.calcEmpWage());
+		System.out.println(company);
 	}
 }
