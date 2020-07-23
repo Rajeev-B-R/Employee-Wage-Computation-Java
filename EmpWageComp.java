@@ -1,71 +1,105 @@
 import java.util.*;
 class EmpWageComp 
 {
-	public static final int isPartTime=1;
-	public static final int isFullTime=2;
-	
-    	private static String company;
-	private static int fullDayHr;
+	private static final int isPartTime = 1;
+	private static final int isFullTime = 2;
+	private static final int fullDayHr = 8;
+
+	private static String company;
 	private static int wagePerHr;
 	private static int maxHrsInMonth;
 	private static int totalWorkingDays;
-	
-	EmpWageComp(String company, int wagePerHr, int fullDayHr, int maxHrsInMonth, int totalWorkingDays)
+	private static int empWage;
+	private static int record;
+
+	public static HashMap<Integer, Integer> compWage = new HashMap<Integer, Integer>();
+	public static ArrayList<Integer> company1 = new ArrayList <Integer>();
+	public static ArrayList<Integer> company2 = new ArrayList <Integer>();
+		
+	EmpWageComp(String company, int wagePerHr, int maxHrsInMonth, int totalWorkingDays) 
 	{
-		this.company = company;
+		this.company=company;
 		this.wagePerHr = wagePerHr;
-		this.fullDayHr = fullDayHr;
 		this.maxHrsInMonth = maxHrsInMonth;
 		this.totalWorkingDays = totalWorkingDays;
 	}
-    
-    	public String getCompany() 
+
+	public String getCompany() 
 	{
 		return this.company;
-	}    
-    
-    	public static int calcEmpWage()
-	{
-		int empHrs=0;
-		int totalEmpHrs=0;
-		int workingDays=0;
-		int totalEmpWage=0;
+	}
 
-		while(totalEmpHrs<=maxHrsInMonth && workingDays<totalWorkingDays)
+	public static int empDailyWage() 
+	{
+		empWage = fullDayHr * wagePerHr;
+		return empWage;
+	}
+
+	public static int empMonthWage() 
+	{
+		int empWage = 0;
+		int empHrs = 0, totalEmpWage = 0;
+		int totalEmpHrs = 0;
+		int workingDays = 0;
+		int fullDayHr = 8;
+		while ( totalEmpHrs <= maxHrsInMonth && workingDays <= totalWorkingDays )
 		{
-			int empWage=0;
-			workingDays++;
-			int empCheck=(int) Math.floor(Math.random()*10)%3;
-			switch(empCheck)
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) 
 			{
-				case isPartTime:
-					empHrs=fullDayHr/2;
-					break;
 				case isFullTime:
-					empHrs=fullDayHr;
+					empHrs = fullDayHr;
+					break;
+				case isPartTime:
+					empHrs = fullDayHr / 2;
 					break;
 				default:
-					empHrs=0;
+					empHrs = 0;
+					break;
 			}
-			totalEmpHrs+=empHrs;
-			empWage=empHrs*wagePerHr;
+			totalEmpHrs += empHrs;
+			workingDays++;
+			empWage = wagePerHr * empHrs;
+			if(company=="More")
+				company1.add(empWage);
+			else 
+				company2.add(empWage);
+			totalEmpWage += empWage;
 		}
-		totalEmpWage=totalEmpHrs*wagePerHr;
 		return totalEmpWage;
+	}
+
+	public static void dailyWageNMonthWage() 
+	{
+		compWage.put(empDailyWage(), empMonthWage());
+		record++;
+	}
+
+	public static void printWage() 
+	{
+		for (int i: compWage.keySet())
+			System.out.println("Daily Wage:"+i+" Total Wage:"+compWage.get(i));
+	}
+
+	public static void printcompWage() 
+	{
+		System.out.println(company1);
+		System.out.println(company2);
 	}
 }
 
 public class EmpWage 
 {
-    	public static ArrayList <Integer> company = new ArrayList <Integer>();
-    	public static void main(String[] args)
+	
+	public static void main(String args[])
 	{
-	    	EmpWageComp company1 = new EmpWageComp("More", 20, 8, 100, 20);
-		EmpWageComp company2 = new EmpWageComp("A-Plus", 18, 7, 95, 18);
-		EmpWageComp company3 = new EmpWageComp("Behtar", 16, 6, 90, 16);
-		company.add(company1.calcEmpWage());
-		company.add(company2.calcEmpWage());
-		company.add(company3.calcEmpWage());
-		System.out.println(company);
+		
+		EmpWageComp company1 = new EmpWageComp("More", 20, 100, 20);
+		company1.dailyWageNMonthWage();
+		EmpWageComp company2 = new EmpWageComp("A-Plus", 18, 95, 18);
+		company2.dailyWageNMonthWage();
+		company2.printWage();
+		company2.printcompWage();
+		
 	}
 }
